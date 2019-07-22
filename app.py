@@ -8,7 +8,6 @@ def create_app(config_filename):
 	app = Flask(__name__)
 	app.config.from_object(config_filename)
 	app.config['SECRET_KEY'] = 'loconfieso'
-	app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://{DB_USER}:{DB_PASS}@{DB_ADDR}/{DB_NAME}".format(DB_USER="test2", DB_PASS="froz21", DB_ADDR="127.0.0.1", DB_NAME="ayni")
 	
 	db.init_app(app)
 	
@@ -28,5 +27,8 @@ def create_app(config_filename):
 
 	from main import main as main_bp
 	app.register_blueprint(main_bp)
+
+	from views import api_bp
+	app.register_blueprint(api_bp, url_prefix='/api')
 
 	return app
