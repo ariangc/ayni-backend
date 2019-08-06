@@ -40,6 +40,7 @@ class User(UserMixin, AddUpdateDelete, db.Model):
 
 	@staticmethod
 	def verify_auth_token(token):
+		print("Verificando token...")
 		s = Serializer(SECRET_KEY)
 		try:
 			data = s.loads(token)

@@ -17,15 +17,19 @@ auth = HTTPBasicAuth()
 
 @auth.verify_password
 def verify_password(email_or_token, password):
-    # first try to authenticate by token
-    user = User.verify_auth_token(email_or_token)
-    if not user:
-        # try to authenticate with email/password
-        user = User.query.filter_by(email = email_or_token).first()
-        if not user or not check_password_hash(user.password, password):
-            return False
-    g.user = user
-    return True
+	# first try to authenticate by token
+	user = User.verify_auth_token(email_or_token)
+	if user:
+		print("Token valido!")
+	if not user:
+		# try to authenticate with email/password
+		print("Token invalido, chekendo password")
+		user = User.query.filter_by(email=email_or_token).first()
+		if not user or not check_password_hash(user.password, password):
+			return False
+	
+	g.user = user
+	return True
 
 class AuthRequiredResource(Resource):
 	method_decorators = [auth.login_required]
@@ -85,15 +89,16 @@ class SignupResource(Resource):
 		user = User.query.filter_by(email=email).first()
 		g.user = user
 		token = g.user.generate_auth_token()
+		userdata = user_schema.dump(g.user).data
 		resp = {'token' : token.decode('ascii')}
-
+		resp.update(userdata)
 		return resp, status.HTTP_200_OK
 
 class LoginResource(Resource):
 	def post(self):
 		request_dict = request.get_json()
 		if not request_dict:
-			response = {'user': 'No input data provided'}
+			response = {'error': 'No input data provided'}
 			return response, status.HTTP_400_BAD_REQUEST
 
 		email = request_dict['email']
@@ -102,13 +107,14 @@ class LoginResource(Resource):
 
 		user = User.query.filter_by(email=email).first()
 
-		if not user and check_password_hash(user.password, password):
+		if not user or not check_password_hash(user.password, password):
 			resp = {'error': 'Please check your login credentials and try again.'}
 			return resp, status.HTTP_400_BAD_REQUEST
 		g.user = user
-
 		token = g.user.generate_auth_token()
+		userdata = user_schema.dump(g.user).data
 		resp = {'token' : token.decode('ascii')}
+		resp.update(userdata)
 		return resp, status.HTTP_200_OK
 
 api.add_resource(UserListResource, '/users/')
