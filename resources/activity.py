@@ -4,7 +4,7 @@ from flask_restful import Resource
 from sqlalchemy.exc import SQLAlchemyError
 from app import db
 import status
-from flask import request
+from flask import request, make_response, jsonify
 
 activity_schema = ActivitySchema()
 
@@ -49,6 +49,17 @@ class ActivityResource(AuthRequiredResource):
 			db.session.rollback()
 			resp = {"error": str(e)}
 			return resp, status.HTTP_400_BAD_REQUEST
+	
+	def delete(self, id): #Aqui hay problemas
+		activity = Activity.query.get_or_404(id)
+		try:
+			delete = activity.delete(activity)
+			response = make_response()
+			return response, status.HTTP_204_NO_CONTENT
+		except SQLAlchemyError as e:
+				db.session.rollback()
+				resp = jsonify({"error": str(e)})
+				return resp, status.HTTP_400_BAD_REQUEST
 
 class ActivityListResource(AuthRequiredResource):
 	def get(self):
