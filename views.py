@@ -4,7 +4,7 @@ from flask_restful import Api, Resource
 # Importing Resources from resources/
 from resources.user import UserListResource, UserResource
 from resources.authentication import SignupResource, LoginResource
-from resources.activity import ActivityResource, ActivityListResource
+from resources.activity import *
 from resources.news import NewsResource, NewsListResource
 from resources.schedule import ScheduleResource, ScheduleListResource
 from resources.enrollment import EnrollmentResource, EnrollmentListResource
