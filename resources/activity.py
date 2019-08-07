@@ -96,3 +96,34 @@ class ActivityListResource(AuthRequiredResource):
 			db.session.rollback()
 			response = {'error': str(e)}
 			return response, status.HTTP_400_BAD_REQUEST
+
+class GetClosetsActivities(AuthRequiredResource):
+	def get(self):
+		request_dict = request.get_json()
+
+		try:
+			lat0 = request_dict['latitude']
+			lon0 = request_dict['longitude']
+			lat_min = lat0 + (180/math.pi)*(-100000/6378137)
+			lat_max = lat0 + (180/math.pi)*(100000/6378137)
+			lon_min = lon0 + (180/math.pi)*(-100000/6378137)/math.cos(math.pi/180*lat0)
+			lon_max = lon0 + (180/math.pi)*(100000/6378137)/math.cos(math.pi/180*lat0)
+			activitiesList = Activity.query.filter(and_(Activity.latitude >= lat_min, Activity.latitude <= lat_max, Activity.longitude >= lon_min, Activity.longitude <= lon_max)).limit(10).all()
+			d = {}
+			closetsActivities = []
+			for activity in activitiesList:
+				e = {}
+				e['id'] = activity.id
+				e['title'] = activity.title
+				e['description'] = activity.description
+				e['latitude'] = activity.latitude
+				e['longitude'] = activity.longitude
+				e['user_id'] = activity.user_id
+				closetsActivities.append(e)
+			d['closetsActivities'] = closetsActivities
+			return d
+		
+		except SQLAlchemyError as e:
+			db.session.rollback()
+			response = {'error': str(e)}
+			return response, status.HTTP_400_BAD_REQUEST			
