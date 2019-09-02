@@ -4,6 +4,7 @@ from resources.utils import password_policy
 from flask import request, jsonify, make_response, g
 from app import db
 from resources.user import user_schema
+from resources.security import verify_password
 import status
 from flask_restful import Resource
 from sqlalchemy.exc import SQLAlchemyError
@@ -110,8 +111,8 @@ class LoginResource(Resource):
 
 		recentActivities = Enrollment.query.filter(Enrollment.user_id == user.id)[-3:]
 		for recentActivity in recentActivities:
+			activityData = Activity.query.filter(Activity.id == recentActivity.activity_id).all()[0]
 			e = {}
-			activityData = Activity.query.filter(Activity.id == recentActivity.activity_id).all()
 			e['title'] = activityData.title
 			e['description'] = activityData.description
 			e['imgUrl'] = 'https://cdn1.soyunperro.com/wp-content/uploads/2018/01/Akita-Inu-perro.jpg'
@@ -119,4 +120,16 @@ class LoginResource(Resource):
 			d['recentActivities'].append(e)
 		resp = {'token' : token.decode('ascii')}
 		resp.update(d)
+		return resp, status.HTTP_200_OK
+
+class VerifyTokenResource(Resource):
+	def get(self):
+		request_dict = request.get_json()
+		if not request_dict:
+			response = {'error': 'No input data provided'}
+			return response, status.HTTP_400_BAD_REQUEST
+		
+		token = request_dict['token']
+		valid = verify_password(token, "unused")
+		resp = {'valid': valid}
 		return resp, status.HTTP_200_OK

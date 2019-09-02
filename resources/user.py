@@ -25,7 +25,7 @@ class UserResource(AuthRequiredResource):
 			recentActivities = Enrollment.query.filter(Enrollment.user_id == user.id)[-3:]
 			for recentActivity in recentActivities:
 				e = {}
-				activityData = Activity.query.filter(Activity.id == recentActivity.activity_id).all()
+				activityData = Activity.query.filter(Activity.id == recentActivity.activity_id).all()[0]
 				e['title'] = activityData.title
 				e['description'] = activityData.description
 				e['imgUrl'] = 'https://cdn1.soyunperro.com/wp-content/uploads/2018/01/Akita-Inu-perro.jpg'
@@ -59,7 +59,7 @@ class UserListResource(AuthRequiredResource):
 				recentActivities = Enrollment.query.filter(Enrollment.user_id == user.id)[-3:]
 				for recentActivity in recentActivities:
 					e2 = {}
-					activityData = Activity.query.filter(Activity.id == recentActivity.activity_id).all()
+					activityData = Activity.query.filter(Activity.id == recentActivity.activity_id).all()[0]
 					e2['title'] = activityData.title
 					e2['description'] = activityData.description
 					e2['imgUrl'] = 'https://cdn1.soyunperro.com/wp-content/uploads/2018/01/Akita-Inu-perro.jpg'

@@ -3,7 +3,7 @@ from flask_restful import Api, Resource
 
 # Importing Resources from resources/
 from resources.user import UserListResource, UserResource
-from resources.authentication import SignupResource, LoginResource
+from resources.authentication import SignupResource, LoginResource, VerifyTokenResource
 from resources.activity import *
 from resources.news import NewsResource, NewsListResource
 from resources.schedule import ScheduleResource, ScheduleListResource
@@ -25,3 +25,4 @@ api.add_resource(ScheduleListResource, '/schedules/')
 api.add_resource(EnrollmentResource, '/enrollments/<int:id>')
 api.add_resource(EnrollmentListResource, '/enrollments/')
 api.add_resource(GetClosestActivities, '/activities/close/')
+api.add_resource(VerifyTokenResource, '/verifyToken')
