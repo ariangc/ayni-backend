@@ -37,7 +37,12 @@ class User(UserMixin, AddUpdateDelete, db.Model):
 	name = db.Column(db.String(100))
 	enrollment = db.relationship("Enrollment")
 	activities = db.relationship("Activity")
-	
+	facebook = db.Column(db.String(100), unique=True)
+	linkedin = db.Column(db.String(100), unique=True)
+	description = db.Column(db.String(1000))
+	membership = db.Column(db.String)
+	points = db.Column(db.Integer)
+
 	def generate_auth_token(self, expiration = 600):
 		s = Serializer(SECRET_KEY, expires_in = expiration)
 		return s.dumps({ 'id': self.id })
@@ -60,7 +65,13 @@ class UserSchema(ma.Schema):
 	name = fields.String(required=True, validate=validate.Length(3))
 	username = fields.String(required=True, validate=validate.Length(3))
 	email = fields.String(required=True, validate=from_wtforms([Email()], locales=locales))
+	facebook = fields.String(required=False)
+	linkedin = fields.String(required=False)
+	description = fields.String(required=False, validate=validate.Length(10))
+	membership = fields.String(required=True) #Missing validation
+	points = fields.Integer(required=False)
 	url = ma.URLFor('api.userresource', id='<id>', _external=True)
+	
 
 ''' Activity '''
 
