@@ -1,4 +1,6 @@
-from models import User, UserSchema, Activity, Enrollment
+from models.user import User, UserSchema
+from models.activity import Activity
+from models.enrollment import Enrollment
 from resources.security import AuthRequiredResource
 from flask_restful import Resource
 import status

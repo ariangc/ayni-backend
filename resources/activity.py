@@ -1,4 +1,4 @@
-from models import Activity, ActivitySchema
+from models.activity import Activity, ActivitySchema
 from resources.security import AuthRequiredResource
 from flask_restful import Resource
 from sqlalchemy.exc import SQLAlchemyError

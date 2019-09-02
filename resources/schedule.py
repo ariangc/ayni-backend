@@ -1,4 +1,4 @@
-from models import Schedule, ScheduleSchema
+from models.schedule import Schedule, ScheduleSchema
 from resources.security import AuthRequiredResource
 from flask_restful import Resource
 from sqlalchemy.exc import SQLAlchemyError

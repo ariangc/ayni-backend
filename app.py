@@ -9,8 +9,6 @@ def create_app(config_filename):
 	
 	db.init_app(app)
 
-	from models import User
-
 	from views import api_bp
 	app.register_blueprint(api_bp, url_prefix='/api')
 

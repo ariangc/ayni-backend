@@ -1,4 +1,6 @@
-from models import User, Enrollment, Activity, ma
+from models.user import User
+from models.enrollment import Enrollment
+from models.activity import Activity
 from werkzeug.security import generate_password_hash, check_password_hash
 from resources.utils import password_policy
 from flask import request, jsonify, make_response, g
