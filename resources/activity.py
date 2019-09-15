@@ -12,7 +12,7 @@ class ActivityResource(AuthRequiredResource):
 	def get(self, id):
 		activity = Activity.query.get_or_404(id)
 		result = activity_schema.dump(activity).data
-		return result
+		return result, status.HTTP_200_OK
 
 	def patch(self, id):
 		activity = Activity.query.get_or_404(id)
@@ -65,7 +65,7 @@ class ActivityListResource(AuthRequiredResource):
 	def get(self):
 		activities = Activity.query.all()
 		result = activity_schema.dump(activities, many=True).data
-		return result
+		return result, status.HTTP_200_OK
 
 	def post(self):
 		request_dict = request.get_json()
@@ -121,7 +121,7 @@ class GetClosetsActivities(AuthRequiredResource):
 				e['user_id'] = activity.user_id
 				closetsActivities.append(e)
 			d['closetsActivities'] = closetsActivities
-			return d
+			return d, status.HTTP_200_OK
 		
 		except SQLAlchemyError as e:
 			db.session.rollback()
