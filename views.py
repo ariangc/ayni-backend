@@ -8,6 +8,7 @@ from resources.activity import *
 from resources.news import NewsResource, NewsListResource
 from resources.schedule import ScheduleResource, ScheduleListResource
 from resources.enrollment import EnrollmentResource, EnrollmentListResource
+from resources.likeRSC import AddLikeResource
 
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
@@ -24,4 +25,5 @@ api.add_resource(ScheduleResource, '/schedules/<int:id>')
 api.add_resource(ScheduleListResource, '/schedules/')
 api.add_resource(EnrollmentResource, '/enrollments/<int:id>')
 api.add_resource(EnrollmentListResource, '/enrollments/')
-api.add_resouce(GetClosetsActivities, '/activities/close/')
+api.add_resource(GetClosetsActivities, '/activities/close/')
+api.add_resource(AddLikeResource, '/like/add')

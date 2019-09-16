@@ -6,19 +6,20 @@ from wtforms.validators import Email, Length
 from flask_login import UserMixin
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
-from app import db
+from app import db, ma
 from config import SECRET_KEY
 from passlib.apps import custom_app_context as password_context
 import re
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 
-ma = Marshmallow()
+
 locales = ['es_ES', 'es']
 
 class AddUpdateDelete():
 	def add(self, resource):
 		db.session.add(resource)
-		return db.session.commit()
+		db.session.commit()
+		return resource.id
 	
 	def update(self):
 		return db.session.commit()

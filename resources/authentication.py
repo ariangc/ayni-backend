@@ -1,4 +1,4 @@
-from models import User
+from models.user import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from resources.utils import password_policy
 from flask import request, jsonify, make_response, g
@@ -10,20 +10,21 @@ from flask_restful import Resource
 
 class SignupResource(Resource):
 	def post(self):
+
 		request_dict = request.get_json()
 		if not request_dict:
 			response = {'user': 'No input data provided'}
 			return response, status.HTTP_400_BAD_REQUEST
-
-		errors = user_schema.validate(request_dict)
-		if errors:
-			return errors, status.HTTP_400_BAD_REQUEST
-
+		
+		#errors = user_schema.validate(request_dict)
+		#if errors:
+		#	return errors, status.HTTP_400_BAD_REQUEST
+		
 		email = request_dict['email']
 		name = request_dict['name']
 		username = request_dict['username']
 		password = request_dict['password']
-
+		
 		user_email = User.query.filter_by(email=email).first()
 		user_username = User.query.filter_by(username=username).first()
 		
@@ -50,7 +51,8 @@ class SignupResource(Resource):
 		user = User.query.filter_by(email=email).first()
 		g.user = user
 		token = g.user.generate_auth_token()
-		userdata = user_schema.dump(g.user).data
+		userdata = user_schema.dump(g.user)
+		#.data
 		resp = {'token' : token.decode('ascii')}
 		resp.update(userdata)
 		return resp, status.HTTP_200_OK
@@ -73,7 +75,8 @@ class LoginResource(Resource):
 			return resp, status.HTTP_400_BAD_REQUEST
 		g.user = user
 		token = g.user.generate_auth_token()
-		userdata = user_schema.dump(g.user).data
+		userdata = user_schema.dump(g.user)
+		#.data
 		resp = {'token' : token.decode('ascii')}
 		resp.update(userdata)
 		return resp, status.HTTP_200_OK

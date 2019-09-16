@@ -6,13 +6,15 @@ from wtforms.validators import Email, Length
 from flask_login import UserMixin
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
-from app import db
+from app import db, ma
 from config import SECRET_KEY
 from passlib.apps import custom_app_context as password_context
 import re
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
+from models.addUpdateDelete import AddUpdateDelete
 
 ''' Activity '''
+locales = ['es_ES', 'es']
 
 class Activity(AddUpdateDelete, db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -24,6 +26,7 @@ class Activity(AddUpdateDelete, db.Model):
 	schedules = db.relationship("Schedule")
 	enrollments = db.relationship("Enrollment")
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+	type_id = db.Column(db.Integer, db.ForeignKey('like.id'))
 
 	@classmethod
 	def is_unique(cls, id, title):
@@ -43,6 +46,7 @@ class ActivitySchema(ma.Schema):
 	latitude = fields.Float(required=True)
 	longitude = fields.Float(required=True)
 	user_id = fields.Integer(required=True)
+	type_id = fields.Integer(required=True)
 	news = fields.Nested("NewsSchema", many=True, exclude=("activity",))
 	schedules = fields.Nested("ScheduleSchema", many=True, exclude=("activity",))
 	enrollments = fields.Nested("EnrollmentSchema", many=True, exclude=("activity",))

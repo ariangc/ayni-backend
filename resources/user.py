@@ -1,4 +1,4 @@
-from models import User, UserSchema
+from models.user import User, UserSchema
 from resources.security import AuthRequiredResource
 from flask_restful import Resource
 
