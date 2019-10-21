@@ -4,6 +4,9 @@ from app import db, create_app
 #from run import app
 
 app = create_app('config')
+
+import models
+
 migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)

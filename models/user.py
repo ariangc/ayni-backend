@@ -22,9 +22,10 @@ class User(UserMixin, AddUpdateDelete, db.Model):
 	username = db.Column(db.String(100), unique=True)
 	password = db.Column(db.String(100))
 	name = db.Column(db.String(100))
+	flg_special_user = db.Column(db.Integer, default = 0, nullable = False)
 	enrollment = db.relationship("Enrollment")
 	activities = db.relationship("Activity")
-	
+
 	def generate_auth_token(self, expiration = 600):
 		s = Serializer(SECRET_KEY, expires_in = expiration)
 		return s.dumps({ 'id': self.id })
