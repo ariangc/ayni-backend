@@ -1,7 +1,7 @@
 from flask_httpauth import HTTPBasicAuth
 from flask_restful import Resource
 from flask import g
-from models import User
+from models.user import User
 from werkzeug.security import check_password_hash
 
 auth = HTTPBasicAuth()

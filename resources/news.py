@@ -1,4 +1,4 @@
-from models import News, NewsSchema
+from models.news import News, NewsSchema
 from flask import request
 from resources.security import AuthRequiredResource
 from flask_restful import Resource

@@ -1,4 +1,4 @@
-from models import Enrollment, EnrollmentSchema
+from models.enrollment import Enrollment, EnrollmentSchema
 from resources.security import AuthRequiredResource
 from flask_restful import Resource
 from sqlalchemy.exc import SQLAlchemyError
