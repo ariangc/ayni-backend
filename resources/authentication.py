@@ -51,8 +51,9 @@ class SignupResource(Resource):
 		user = User.query.filter_by(email=email).first()
 		g.user = user
 		token = g.user.generate_auth_token()
-		userdata = user_schema.dump(g.user)
+		userdata = user_schema.dump(g.user).data
 		#.data
+		print(userdata)
 		resp = {'token' : token.decode('ascii')}
 		resp.update(userdata)
 		return resp, status.HTTP_200_OK
@@ -75,7 +76,7 @@ class LoginResource(Resource):
 			return resp, status.HTTP_400_BAD_REQUEST
 		g.user = user
 		token = g.user.generate_auth_token()
-		userdata = user_schema.dump(g.user)
+		userdata = user_schema.dump(g.user).data
 		#.data
 		resp = {'token' : token.decode('ascii')}
 		resp.update(userdata)
