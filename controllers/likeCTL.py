@@ -1,5 +1,5 @@
 from models.like import Like, LikeSchema
-from models.like_x_user import Like_X_User, Like_X_UserSchema 
+from models.like_x_user import Like_x_User, Like_X_UserSchema 
 import status
 from app import db
 

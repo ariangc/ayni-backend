@@ -12,12 +12,14 @@ from passlib.apps import custom_app_context as password_context
 import re
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 from models.addUpdateDelete import AddUpdateDelete
+from models.project import Project
 
 ''' Activity '''
 locales = ['es_ES', 'es']
 
 class Activity(AddUpdateDelete, db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	project_id = db.Column(db.Integer, db.ForeignKey('project.id'), primary_key = True)
 	title = db.Column(db.String(100), unique=True)
 	description = db.Column(db.String(1000))
 	latitude = db.Column(db.Float)

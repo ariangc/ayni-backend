@@ -10,7 +10,7 @@ from marshmallow_validators.wtforms import from_wtforms
 from wtforms.validators import Email, Length
 from sqlalchemy import *
 
-class Like_X_User(AddUpdateDelete, db.Model):
+class Like_x_User(AddUpdateDelete, db.Model):
     __tablename__='like_x_user'
     id_user = db.Column(db.Integer, ForeignKey('user.id'), primary_key=True)
     id_like = db.Column(db.Integer, ForeignKey('like.id'), primary_key=True)

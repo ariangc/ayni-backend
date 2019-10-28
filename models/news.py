@@ -12,19 +12,20 @@ from passlib.apps import custom_app_context as password_context
 import re
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 from models.addUpdateDelete import AddUpdateDelete
+from models.project import Project
 
 ''' News '''
 locales = ['es_ES', 'es']
 
 class News(AddUpdateDelete, db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	project_id = db.Column(db.Integer, db.ForeignKey('project.id'), primary_key = True)
 	title = db.Column(db.String(100))
 	description = db.Column(db.String(1000))
-	activity_id = db.Column(db.Integer, db.ForeignKey('activity.id'))
-
+	
 class NewsSchema(ma.Schema):
 	id = fields.Integer(dump_only=True)
 	title = fields.String(required=True, validate=validate.Length(3))
 	description = fields.String(required=True, validate=validate.Length(3))
-	activity_id = fields.Integer(required=True)
+	project_id = fields.Integer(required=True)
 	url = ma.URLFor('api.newsresource', id='<id>', _external=True)

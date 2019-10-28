@@ -1,18 +1,30 @@
 from flask import Blueprint
 from flask_restful import Api, Resource
 
+from models.project import Project
+from models.activity import Activity
 from models.chat import Chat
+from models.chat_x_user import Chat_x_User
 from models.comments import Comments
-from models.contact import Contact
+#from models.contact import Contact
+from models.enrollment import Enrollment
 from models.kanban import Kanban
-from models.kanban_x_activity import Kanban_x_Activity
+from models.kanban_x_project import Kanban_x_Project
+from models.like import Like
+from models.like_x_user import Like_x_User
 from models.message import Message
+from models.news import News
 from models.notification_type import Notification_Type
 from models.notification import Notification
+from models.organization import Organization
 from models.points import Points
 from models.reaction import Reaction
 from models.report import Report
+from models.schedule import Schedule
 from models.staff_x_activity import Staff_x_Activity
+from models.task import Task
+from models.user_x_organization import User_x_Organization
+from models.user import User
 
 # Importing Resources from resources/
 from resources.user import UserListResource, UserResource
