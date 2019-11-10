@@ -23,8 +23,6 @@ class User(UserMixin, AddUpdateDelete, db.Model):
 	password = db.Column(db.String(100))
 	name = db.Column(db.String(100))
 	flg_special_user = db.Column(db.Integer, default = 0, nullable = False)
-	enrollment = db.relationship("Enrollment")
-	activities = db.relationship("Activity")
 	telephone_number_1 = db.Column(db.String(20))
 	telephone_number_2 = db.Column(db.String(20))
 	email_1 = db.Column(db.String(50))

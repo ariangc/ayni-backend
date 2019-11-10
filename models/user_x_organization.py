@@ -25,6 +25,20 @@ class User_x_Organization(AddUpdateDelete, db.Model):
         db.session.commit()
         db.session.flush()
         return 1
+    @classmethod
+    def verifyExistActive(self, organizationId, userId):
+        ver = User_x_Organization.query.filter(User_x_Organization.organization_id == organizationId, User_x_Organization.user_id == userId).first()
+        if ver is None:
+            return False, False
+        if ver.flg_active == 1:
+            return True, True
+        return True, False
+    @classmethod
+    def turnFlg(self, organizationId,userId):
+        ver = User_x_Organization.query.filter(User_x_Organization.user_id == userId, User_x_Organization.organization_id == organizationId).first()
+        ver.flg_active = 1 - ver.flg_active
+        db.session.commit()
+        return 1
 
 #class Staff_x_ActivitySchema(ma.Schema):
 	##

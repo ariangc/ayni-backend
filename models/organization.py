@@ -24,12 +24,19 @@ class Organization(AddUpdateDelete, db.Model):
     direction = db.Column(db.String(100))
     flg_active = db.Column(db.Integer, nullable = False, default = 1)
     image_direction = db.Column(db.String(255))
+    id_creator = db.Column(db.Integer)
 
     @classmethod
     def addOne(self,obj):
         db.session.add(obj)
         db.session.commit()
         db.session.flush()
+        return 1
+    @classmethod
+    def turnFlg(self, organizationId):
+        ver = Organization.query.filter(Organization.id == organizationId).first()
+        ver.flg_active = 1 - ver.flg_active
+        db.session.commit()
         return 1
 
 #class Staff_x_ActivitySchema(ma.Schema):

@@ -24,11 +24,6 @@ class Activity(AddUpdateDelete, db.Model):
 	description = db.Column(db.String(1000))
 	latitude = db.Column(db.Float)
 	longitude = db.Column(db.Float)
-	news = db.relationship("News")
-	schedules = db.relationship("Schedule")
-	enrollments = db.relationship("Enrollment")
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-	type_id = db.Column(db.Integer, db.ForeignKey('like.id'))
 
 	@classmethod
 	def is_unique(cls, id, title):

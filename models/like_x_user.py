@@ -24,6 +24,22 @@ class Like_x_User(AddUpdateDelete, db.Model):
         db.session.flush()
         return 1
 
+    @classmethod
+    def verifyExistActive(self, userId, likeId):
+        ver = Like_x_User.query.filter(Like_x_User.id_user == userId, Like_x_User.id_like == likeId).first()
+        if ver is None:
+            return False, False
+        if ver.flg_active == 1:
+            return True, True
+        return True, False
+        
+    @classmethod
+    def turnFlg(self, userId, likeId):
+        ver = Like_x_User.query.filter(Like_x_User.id_user == userId, Like_x_User.id_like == likeId).first()
+        ver.flg_active = 1 - ver.flg_active
+        db.session.commit()
+        return 1
+
 class Like_X_UserSchema(ma.Schema):
 	id_user = fields.Integer(required=True)
 	id_like = fields.Integer(required=True)
