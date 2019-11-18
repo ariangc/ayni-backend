@@ -17,6 +17,7 @@ def jsonifyOrganization(obj):
     d['flg_active'] = obj.flg_active
     d['image_direction'] = obj.image_direction
     d['id_creator'] = obj.id_creator
+    d['reference_1'] = obj.reference_1
     return d
 
 def addMemberOrganization(userId, organizationId):
@@ -27,7 +28,7 @@ def addMemberOrganization(userId, organizationId):
     obj = User_x_Organization.addOne(obj)
     return 1
 
-def createOrganization(userId, listOfUsers, name, telephone_number_1, telephone_number_2, email_1, email_2, direction, image_direction):
+def createOrganization(userId, listOfUsers, name, telephone_number_1, telephone_number_2, email_1, email_2, direction, image_direction, reference1):
     org = Organization(
         name = name,
         telephone_number_1 = telephone_number_1,
@@ -36,7 +37,8 @@ def createOrganization(userId, listOfUsers, name, telephone_number_1, telephone_
         email_2 = email_2,
         direction = direction,
         image_direction = image_direction,
-        id_creator = userId
+        id_creator = userId,
+        reference_1 = reference1
     )
     idOrg = Organization.addOne(org)
     addMemberOrganization(userId, idOrg)

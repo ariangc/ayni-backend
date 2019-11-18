@@ -21,7 +21,8 @@ class CreateOrganization(AuthRequiredResource):
         email_2 = d['email2']
         direction = d['direction']
         image_direction = d['imageDirection']
-        return organizationCTL.createOrganization(userId, listOfUsers, name, telephone_number_1, telephone_number_2, email_1, email_2, direction, image_direction)
+        reference_1 = d['reference1']
+        return organizationCTL.createOrganization(userId, listOfUsers, name, telephone_number_1, telephone_number_2, email_1, email_2, direction, image_direction, reference1)
 
 class UpdateMembers(AuthRequiredResource):
     def post(self):

@@ -25,6 +25,7 @@ class Organization(AddUpdateDelete, db.Model):
     flg_active = db.Column(db.Integer, nullable = False, default = 1)
     image_direction = db.Column(db.String(255))
     id_creator = db.Column(db.Integer)
+    reference_1 = db.Column(db.String(50), nullable = False)
 
     @classmethod
     def addOne(self,obj):
