@@ -33,6 +33,7 @@ class Organization(AddUpdateDelete, db.Model):
         db.session.commit()
         db.session.flush()
         return 1
+        
     @classmethod
     def turnFlg(self, organizationId):
         ver = Organization.query.filter(Organization.id == organizationId).first()
