@@ -19,7 +19,7 @@ from models.project import Project
 locales = ['es_ES', 'es']
 
 class Schedule(AddUpdateDelete, db.Model):
-	id = db.Column(db.Integer, primary_key=True)
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	project_id = db.Column(db.Integer, db.ForeignKey('project.id'), primary_key = True)
 	description = db.Column(db.String(1000))
 	start_date = db.Column(db.DateTime)

@@ -18,7 +18,7 @@ from models.project import Project
 locales = ['es_ES', 'es']
 
 class News(AddUpdateDelete, db.Model):
-	id = db.Column(db.Integer, primary_key=True)
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	project_id = db.Column(db.Integer, db.ForeignKey('project.id'), primary_key = True)
 	title = db.Column(db.String(100))
 	description = db.Column(db.String(1000))

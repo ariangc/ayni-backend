@@ -13,7 +13,7 @@ from models.user import User
 
 class Report(AddUpdateDelete, db.Model):
     __tablename__='report'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     user_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False, primary_key = True)
     send_user_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False, primary_key = True) #el que envio el reporte
     message = db.Column(db.String(255), nullable = False)

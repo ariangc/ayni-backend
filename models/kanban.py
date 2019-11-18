@@ -13,7 +13,7 @@ from sqlalchemy import *
 class Kanban(AddUpdateDelete, db.Model):
     ##aqui deberian ir los tres tipos, to do, doing y done
     __tablename__='kanban'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255), nullable = False)
 

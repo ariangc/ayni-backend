@@ -9,7 +9,7 @@ from wtforms.validators import Email, Length
 from sqlalchemy import *
 
 class Like(AddUpdateDelete, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100), unique=True)
     description = db.Column(db.String(1000))
     logodir = db.Column(db.String(500), unique=True, nullable = True)

@@ -18,7 +18,7 @@ from models.addUpdateDelete import AddUpdateDelete
 locales = ['es_ES', 'es']
 
 class Enrollment(AddUpdateDelete, db.Model):
-	id = db.Column(db.Integer, primary_key=True)
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 	activity_id = db.Column(db.Integer, db.ForeignKey('activity.id'))
 

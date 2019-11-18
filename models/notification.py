@@ -14,7 +14,7 @@ from models.user import User
 
 class Notification(AddUpdateDelete, db.Model):
     __tablename__='notification'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     user_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False)
     notification_type_id = db.Column(db.Integer, ForeignKey('notification_type.id'), nullable = False)
     description = db.Column(db.String(255), nullable = False)

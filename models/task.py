@@ -15,7 +15,7 @@ from models.activity import Activity
 class Task(AddUpdateDelete, db.Model):
     ## aqui las notitas de cada tipo por cada actividad
     __tablename__='task'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), primary_key = True)
     creation_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)
     name = db.Column(db.String(100), nullable = False)

@@ -14,7 +14,7 @@ from models.user import User
 class Organization(AddUpdateDelete, db.Model):
     ## aqui las notitas de cada tipo por cada actividad
     __tablename__='organization'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     name = db.Column(db.String(100), nullable = False)
     created_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)
     telephone_number_1 = db.Column(db.String(20))

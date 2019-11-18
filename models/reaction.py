@@ -15,7 +15,7 @@ from models.user import User
 class Reaction(AddUpdateDelete, db.Model):
     ## aqui las notitas de cada tipo por cada actividad
     __tablename__='coments'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     news_id = db.Column(db.Integer, ForeignKey('news.id'), primary_key = True)
     user_id = db.Column(db.Integer, ForeignKey('user.id'), primary_key = True)
     publication_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)

@@ -14,7 +14,7 @@ from models.activity import Activity
 class Contact(AddUpdateDelete, db.Model):
     ## aqui las notitas de cada tipo por cada actividad
     __tablename__='contact'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     activity_id = db.Column(db.Integer, ForeignKey('activity.id'), nullable=False)
     name = db.Column(db.String(100), nullable = False)
     telephone_number_1 = db.Column(db.String(20))

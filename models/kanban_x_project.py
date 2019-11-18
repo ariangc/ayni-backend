@@ -15,7 +15,7 @@ from models.activity import Activity
 class Kanban_x_Project(AddUpdateDelete, db.Model):
     ## aqui las notitas de cada tipo por cada actividad
     __tablename__='kanban_x_activity'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     project_id = db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
     kanban_type_id = db.Column(db.Integer, ForeignKey('kanban.id'), nullable=False)
     creation_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)
