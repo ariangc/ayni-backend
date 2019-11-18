@@ -12,7 +12,11 @@ from sqlalchemy import *
 
 class Notification_Type(AddUpdateDelete, db.Model):
     __tablename__='notification_type'
+<<<<<<< HEAD
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+=======
+    id = db.Column(db.Integer, primary_key=True)
+>>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
     type = db.Column(db.String(100), nullable = False)
     description = db.Column(db.String(255), nullable = False)
     content = db.Column(db.String(255), nullable = False)

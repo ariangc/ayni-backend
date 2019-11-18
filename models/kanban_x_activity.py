@@ -8,24 +8,21 @@ from marshmallow_validators.wtforms import from_wtforms
 from wtforms.validators import Email, Length
 from sqlalchemy import *
 ##
+from models.kanban import Kanban
 from models.activity import Activity
 ##
 
-class Contact(AddUpdateDelete, db.Model):
+class Kanban_x_Activity(AddUpdateDelete, db.Model):
     ## aqui las notitas de cada tipo por cada actividad
-    __tablename__='contact'
-<<<<<<< HEAD
-    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-=======
+    __tablename__='kanban_x_activity'
     id = db.Column(db.Integer, primary_key = True)
->>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
     activity_id = db.Column(db.Integer, ForeignKey('activity.id'), nullable=False)
+    kanban_type_id = db.Column(db.Integer, ForeignKey('kanban.id'), nullable=False)
+    creation_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)
     name = db.Column(db.String(100), nullable = False)
-    telephone_number_1 = db.Column(db.String(20))
-    telephone_number_2 = db.Column(db.String(20))
-    email_1 = db.Column(db.String(50))
-    email_2 = db.Column(db.String(50))
-    direction = db.Column(db.String(100))
+    description = db.Column(db.String(255))
+    modification_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)
+    limit_date = db.Column(db.DateTime)
     
     @classmethod
     def addOne(self,obj):
@@ -34,6 +31,6 @@ class Contact(AddUpdateDelete, db.Model):
         db.session.flush()
         return 1
 
-#class ContactSchema(ma.Schema):
+#class Kanban_x_ActivitySchema(ma.Schema):
 	##
     #url = ma.URLFor('api.likes_x_userresource', id='<id>', _external=True)

@@ -1,5 +1,9 @@
 from models.like import Like, LikeSchema
+<<<<<<< HEAD
 from models.like_x_user import Like_x_User, Like_X_UserSchema 
+=======
+from models.like_x_user import Like_X_User, Like_X_UserSchema 
+>>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
 import status
 from app import db
 
@@ -18,6 +22,7 @@ def addLike(name, description, logodir):
 
     id_obj = Like.addOne(obj)
 
+<<<<<<< HEAD
     return {"id": id_obj}, status.HTTP_200_OK
 
 def jsonifyLike(like):
@@ -76,3 +81,6 @@ def updateLikesXUser(userId, listOnLikes, listOffLikes):
     return status.HTTP_200_OK
 
 
+=======
+    return {"id": id_obj}, status.HTTP_200_OK
+>>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f

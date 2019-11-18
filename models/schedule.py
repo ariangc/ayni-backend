@@ -12,15 +12,22 @@ from passlib.apps import custom_app_context as password_context
 import re
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 from models.addUpdateDelete import AddUpdateDelete
+<<<<<<< HEAD
 from models.project import Project
 
+=======
+>>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
 
 ''' Schedule '''
 locales = ['es_ES', 'es']
 
 class Schedule(AddUpdateDelete, db.Model):
+<<<<<<< HEAD
 	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 	project_id = db.Column(db.Integer, db.ForeignKey('project.id'), primary_key = True)
+=======
+	id = db.Column(db.Integer, primary_key=True)
+>>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
 	description = db.Column(db.String(1000))
 	start_date = db.Column(db.DateTime)
 	end_date = db.Column(db.DateTime)

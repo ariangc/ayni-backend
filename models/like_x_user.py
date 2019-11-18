@@ -10,7 +10,11 @@ from marshmallow_validators.wtforms import from_wtforms
 from wtforms.validators import Email, Length
 from sqlalchemy import *
 
+<<<<<<< HEAD
 class Like_x_User(AddUpdateDelete, db.Model):
+=======
+class Like_X_User(AddUpdateDelete, db.Model):
+>>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
     __tablename__='like_x_user'
     id_user = db.Column(db.Integer, ForeignKey('user.id'), primary_key=True)
     id_like = db.Column(db.Integer, ForeignKey('like.id'), primary_key=True)
@@ -24,6 +28,7 @@ class Like_x_User(AddUpdateDelete, db.Model):
         db.session.flush()
         return 1
 
+<<<<<<< HEAD
     @classmethod
     def verifyExistActive(self, userId, likeId):
         ver = Like_x_User.query.filter(Like_x_User.id_user == userId, Like_x_User.id_like == likeId).first()
@@ -40,6 +45,8 @@ class Like_x_User(AddUpdateDelete, db.Model):
         db.session.commit()
         return 1
 
+=======
+>>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
 class Like_X_UserSchema(ma.Schema):
 	id_user = fields.Integer(required=True)
 	id_like = fields.Integer(required=True)

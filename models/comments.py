@@ -15,7 +15,11 @@ from models.user import User
 class Comments(AddUpdateDelete, db.Model):
     ## aqui las notitas de cada tipo por cada actividad
     __tablename__='comments'
+<<<<<<< HEAD
     id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+=======
+    id = db.Column(db.Integer, primary_key = True)
+>>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
     news_id = db.Column(db.Integer, ForeignKey('news.id'), primary_key = True)
     user_id = db.Column(db.Integer, ForeignKey('user.id'), primary_key = True)
     publication_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)

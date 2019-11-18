@@ -14,7 +14,11 @@ from models.user import User
 
 class Message(AddUpdateDelete, db.Model):
     __tablename__='message'
+<<<<<<< HEAD
     id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+=======
+    id = db.Column(db.Integer, primary_key = True)
+>>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
     user_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False, primary_key = True)
     chat_id = db.Column(db.Integer, ForeignKey('chat.id'), nullable = False, primary_key = True)
     send_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)

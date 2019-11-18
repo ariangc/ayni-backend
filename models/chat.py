@@ -12,7 +12,11 @@ from sqlalchemy import *
 
 class Chat(AddUpdateDelete, db.Model):
     __tablename__='chat'
+<<<<<<< HEAD
     id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+=======
+    id = db.Column(db.Integer, primary_key = True)
+>>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
     creation_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)
     last_message_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)
     
