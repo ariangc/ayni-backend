@@ -28,8 +28,4 @@ class LikeSchema(ma.Schema):
 	name = fields.String(required=True, validate=validate.Length(3))
 	description = fields.String(required=True, validate=validate.Length(3))
 	logodir = fields.String(required=True)
-<<<<<<< HEAD
-	url = ma.URLFor('api.likesresource', id='<id>', _external=True)
-=======
-	url = ma.URLFor('api.likesresource', id='<id>', _external=True)
->>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
+    url = ma.URLFor('api.likesresource', id='<id>', _external=True)
