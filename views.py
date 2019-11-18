@@ -37,6 +37,7 @@ from resources.schedule import ScheduleResource, ScheduleListResource
 from resources.enrollment import EnrollmentResource, EnrollmentListResource
 from resources.likeRSC import AddLikeResource, GetAllLikes, PostLikesXUser, GetLikesXUser, UpdateLikesXUser
 from resources import organizationRSC
+from resources import projectRSC
 
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
@@ -69,3 +70,9 @@ api.add_resource(organizationRSC.CreateOrganization, '/organization/create')
 api.add_resource(organizationRSC.UpdateMembers, '/organization/update')
 api.add_resource(organizationRSC.GetOrganizationsXUser, '/organization/get_org_user')
 api.add_resource(organizationRSC.DeleteOrganization, '/organization/delete')
+
+# *********** Project *********** #
+api.add_resource(projectRSC.CreateProject, '/project/create')
+api.add_resource(projectRSC.DeleteProject, '/project/delete')
+
+
