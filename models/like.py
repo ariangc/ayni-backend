@@ -9,19 +9,19 @@ from wtforms.validators import Email, Length
 from sqlalchemy import *
 
 class Like(AddUpdateDelete, db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(100), unique=True)
-    description = db.Column(db.String(1000))
-    logodir = db.Column(db.String(500), unique=True, nullable = True)
-    create_date = db.Column(db.DateTime, server_default = func.current_timestamp())
-    last_mod_date = db.Column(db.DateTime, server_default = func.current_timestamp())
-    
-    @classmethod
-    def addOne(self,obj):
-        db.session.add(obj)
-        db.session.commit()
-        db.session.flush()
-        return obj.id
+	id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+	name = db.Column(db.String(100), unique=True)
+	description = db.Column(db.String(1000))
+	logodir = db.Column(db.String(500), unique=True, nullable = True)
+	create_date = db.Column(db.DateTime, server_default = func.current_timestamp())
+	last_mod_date = db.Column(db.DateTime, server_default = func.current_timestamp())
+	
+	@classmethod
+	def addOne(self,obj):
+		db.session.add(obj)
+		db.session.commit()
+		db.session.flush()
+		return obj.id
 
 class LikeSchema(ma.Schema):
 	id = fields.Integer(dump_only=True)

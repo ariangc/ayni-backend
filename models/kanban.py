@@ -11,19 +11,19 @@ from sqlalchemy import *
 ##
 
 class Kanban(AddUpdateDelete, db.Model):
-    ##aqui deberian ir los tres tipos, to do, doing y done
-    __tablename__='kanban'
-    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    name = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.String(255), nullable = False)
+	##aqui deberian ir los tres tipos, to do, doing y done
+	__tablename__='kanban'
+	id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+	name = db.Column(db.String(100), nullable=False)
+	description = db.Column(db.String(255), nullable = False)
 
-    @classmethod
-    def addOne(self,obj):
-        db.session.add(obj)
-        db.session.commit()
-        db.session.flush()
-        return 1
+	@classmethod
+	def addOne(self,obj):
+		db.session.add(obj)
+		db.session.commit()
+		db.session.flush()
+		return 1
 
 #class KanbanSchema(ma.Schema):
 	##
-    #url = ma.URLFor('api.likes_x_userresource', id='<id>', _external=True)
+	#url = ma.URLFor('api.likes_x_userresource', id='<id>', _external=True)

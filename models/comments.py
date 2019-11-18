@@ -13,21 +13,21 @@ from models.user import User
 ##
 
 class Comments(AddUpdateDelete, db.Model):
-    ## aqui las notitas de cada tipo por cada actividad
-    __tablename__='comments'
-    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    news_id = db.Column(db.Integer, ForeignKey('news.id'), primary_key = True)
-    user_id = db.Column(db.Integer, ForeignKey('user.id'), primary_key = True)
-    publication_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)
-    description = db.Column(db.String(255), nullable = False)
+	## aqui las notitas de cada tipo por cada actividad
+	__tablename__='comments'
+	id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+	news_id = db.Column(db.Integer, ForeignKey('news.id'), primary_key = True)
+	user_id = db.Column(db.Integer, ForeignKey('user.id'), primary_key = True)
+	publication_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)
+	description = db.Column(db.String(255), nullable = False)
 
-    @classmethod
-    def addOne(self,obj):
-        db.session.add(obj)
-        db.session.commit()
-        db.session.flush()
-        return 1
+	@classmethod
+	def addOne(self,obj):
+		db.session.add(obj)
+		db.session.commit()
+		db.session.flush()
+		return 1
 
 #class CommentsSchema(ma.Schema):
 	##
-    #url = ma.URLFor('api.likes_x_userresource', id='<id>', _external=True)
+	#url = ma.URLFor('api.likes_x_userresource', id='<id>', _external=True)

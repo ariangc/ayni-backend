@@ -13,22 +13,22 @@ from models.user import User
 ##
 
 class Notification(AddUpdateDelete, db.Model):
-    __tablename__='notification'
-    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-    user_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False)
-    notification_type_id = db.Column(db.Integer, ForeignKey('notification_type.id'), nullable = False)
-    description = db.Column(db.String(255), nullable = False)
-    flg_seen = db.Column(db.Integer, nullable=False)
-    notification_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)
-    seen_date = db.Column(db.DateTime)
+	__tablename__='notification'
+	id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+	user_id = db.Column(db.Integer, ForeignKey('user.id'), nullable=False)
+	notification_type_id = db.Column(db.Integer, ForeignKey('notification_type.id'), nullable = False)
+	description = db.Column(db.String(255), nullable = False)
+	flg_seen = db.Column(db.Integer, nullable=False)
+	notification_date = db.Column(db.DateTime, server_default = func.current_timestamp(), nullable = False)
+	seen_date = db.Column(db.DateTime)
 
-    @classmethod
-    def addOne(self,obj):
-        db.session.add(obj)
-        db.session.commit()
-        db.session.flush()
-        return 1
+	@classmethod
+	def addOne(self,obj):
+		db.session.add(obj)
+		db.session.commit()
+		db.session.flush()
+		return 1
 
 #class NotificationSchema(ma.Schema):
 	##
-    #url = ma.URLFor('api.likes_x_userresource', id='<id>', _external=True)
+	#url = ma.URLFor('api.likes_x_userresource', id='<id>', _external=True)
