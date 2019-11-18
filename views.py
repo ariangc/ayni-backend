@@ -67,12 +67,13 @@ api.add_resource(UpdateLikesXUser, '/like/update_likes_user')
 
 # *********** Organization *********** #
 api.add_resource(organizationRSC.CreateOrganization, '/organization/create')
-api.add_resource(organizationRSC.UpdateMembers, '/organization/update')
+api.add_resource(organizationRSC.UpdateMembers, '/organization/update_users')
 api.add_resource(organizationRSC.GetOrganizationsXUser, '/organization/get_org_user')
 api.add_resource(organizationRSC.DeleteOrganization, '/organization/delete')
 
 # *********** Project *********** #
 api.add_resource(projectRSC.CreateProject, '/project/create')
 api.add_resource(projectRSC.DeleteProject, '/project/delete')
+api.add_resource(projectRSC.GetProjectXOrganization, '/project/get_project_organization')
 
 

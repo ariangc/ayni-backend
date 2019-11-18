@@ -26,3 +26,13 @@ class DeleteProject(AuthRequiredResource):
             return response, status.HTTP_400_BAD_REQUEST
         projectId = d['projectId']
         return projectCTL.deleteProject(projectId)
+
+class GetProjectXOrganization(AuthRequiredResource):
+    def get(self):
+        d = request.get_json()
+        if not d:
+            response = {'user': 'No input data provided'}
+            return response, status.HTTP_400_BAD_REQUEST
+        idOrganization = d['organizationId']
+        return projectCTL.getProjectXOrganization(idOrganization), status.HTTP_200_OK
+
