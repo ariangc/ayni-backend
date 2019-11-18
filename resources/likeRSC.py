@@ -24,7 +24,6 @@ class AddLikeResource(AuthRequiredResource):
 		
 		return likeCTL.addLike(name, description, logodir)
 
-<<<<<<< HEAD
 class GetAllLikes(AuthRequiredResource):
 	def get(self):
 		return likeCTL.getAllLikes()
@@ -61,8 +60,3 @@ class UpdateLikesXUser(AuthRequiredResource):
 		listOnLikes = d['listOnLikes']
 		listOffLikes = d['listOffLikes']	
 		return likeCTL.updateLikesXUser(userId, listOnLikes, listOffLikes)
-=======
-
-
-		
->>>>>>> e79e45981aaf7e9234a797f80c7e2f3fde42af7f
